@@ -1,0 +1,25 @@
+- name: Install a web server and serve a html
+  hosts: webserver
+  become: yes
+  tasks:
+    - name: Install nginx
+      ansible.builtin.apt:
+        name: nginx
+        update_cache: yes
+        state: latest
+
+    - name: Copy the html file
+      ansible.builtin.copy:
+        content: "This is a web server using ansible"
+        dest: /var/www/html/index.html
+        mode: 0644
+      notify: reload nginx
+
+    
+  handlers:
+    - name: reload nginx
+      ansible.builtin.systemd:
+        name: nginx
+        state: reloaded
+
+    

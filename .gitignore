@@ -1,0 +1,5 @@
+terraform_prov
+terraform_prov.pub
+.terraform
+*.tfstate
+*.tfstate.backup

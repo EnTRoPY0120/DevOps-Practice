@@ -1,0 +1,60 @@
+---
+# YAML documents begin with the document separator ---
+# The minus in YAML this indicates a list item. The Playbook contains a list
+# of plays, with each play being a dictionary
+
+- name: 'create and access variables inside the playbook'
+
+  # Target: where our play will run and options it will run with
+  hosts: ansnode1
+  gather_facts: false
+
+  # Variable: variables that will apply to the play, on all target systems
+  vars_files:
+    - external_vars.yml
+  
+  # Task: the list of tasks that will be executed within the playbook
+  tasks:       
+     - name: Displaying external dictionary key value 
+       debug:
+         msg: "{{ external_example_key }}"
+
+     - name: Displaying external named dictionary dictionary
+       debug:   
+         msg: "{{ external_dict}}"
+
+     - name: Displaying name dictionary dictionary key value with dictionary dot notation
+       debug:
+         msg: "{{ external_dict.dict_key}}"
+
+     - name: Displaying named dictionary dictionary key value with brackets notation
+       debug:
+         msg: "{{ external_dict['dict_key']}}"
+     - name: Displaing external named inline dictionary key value
+       debug: msg="{{ external_inline_dict}}"
+     - name: Displaying external named inline dictionary key value with dot notation
+       debug:
+         msg: "{{ external_inline_dict.inline_dict_key }}"
+     - name: Displaying external named inline dictionary key value with brackets notation
+       debug:
+         msg: "{{ external_inline_dict['inline_dict_key'] }}"
+     - name: Display external named list
+       debug:
+         msg: "{{ external_named_list }}"
+     - name: Display external named list first item dot notation
+       debug:
+         msg: "{{ external_named_list.0 }}"
+     - name: Display external named list first item with brackets notation
+       debug:
+         msg: "{{ external_named_list[0]}}"
+     - name: Display external inline named list first item with brackets notation
+       debug:
+         msg: "{{ external_inline_named_list}}"
+     - name: Display external inline named list first item dot notation
+       debug:
+         msg: "{{ external_inline_named_list.0 }}"
+     - name: Display external inline named list first item with brackets notation
+       debug:
+         msg: "{{ external_inline_named_list[0]}}"
+# Three dots indicate the end of a YAML document
+...

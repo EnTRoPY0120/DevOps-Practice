@@ -1,0 +1,19 @@
+---
+# YAML documents begin with the document separator ---
+# The minus in YAML this indicates a list item. The Playbook contains a list
+# of plays, with each play being a dictionary
+
+- name: 'create and access variables inside the playbook'
+
+  # Target: where our play will run and options it will run with
+  hosts: ansnode1
+  gather_facts: true
+
+ 
+  # Task: the list of tasks that will be executed within the playbook
+  tasks:
+     - name: Displaying groupvars and hostvars from the directory structure
+       debug:
+         msg: "{{ extra_vars_key }}"
+# Three dots indicate the end of a YAML document
+...

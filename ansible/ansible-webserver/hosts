@@ -1,0 +1,2 @@
+[webserver]
+ansibleNode1 ansible_ssh_host=54.145.100.183 ansible_user=ubuntu ansible_port=22 ansible_python_interpreter=/usr/bin/python3
